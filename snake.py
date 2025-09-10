@@ -5,11 +5,12 @@ import win32api
 import win32process
 import commctrl
 import ctypes
-from ctypes import wintypes
+from ctypes import wintypes # 导入ctypes中的Windows类型定义
 import time
 import random
-import keyboard  # 需要先安装: pip install keyboard
+import keyboard  
 from collections import deque  # 引入双端队列
+from colorama import init as colorama_init # 引入 colorama
 
 
 # --- 颜色定义 ---
@@ -519,5 +520,7 @@ def main():
 
 
 if __name__ == "__main__":
+    # 初始化 colorama，让颜色在 exe 中也能生效
+    colorama_init(autoreset=True)
     set_dpi_awareness()
     main()
