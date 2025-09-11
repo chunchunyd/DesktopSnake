@@ -195,15 +195,15 @@ def calculate_grid_parameters(h_listview):
     pos0 = sorted_by_topleft[0]
     origin_x, origin_y = pos0
 
-    left_column_icons = sorted(
-        [p for p in all_icon_pos if abs(p[0] - origin_x) < 20], key=lambda p: p[1]
-    )
-    if len(left_column_icons) < 2:
-        print(
-            f"{Colors.FAIL}错误：无法找到左下角边界图标。请确保在左上角图标的正下方放置一个图标作为边界。{Colors.ENDC}"
-        )
-        return None
-    pos3 = left_column_icons[-1]
+    # left_column_icons = sorted(
+    #     [p for p in all_icon_pos if abs(p[0] - origin_x) < 20], key=lambda p: p[1]
+    # )
+    # if len(left_column_icons) < 2:
+    #     print(
+    #         f"{Colors.FAIL}错误：无法找到左下角边界图标。请确保在左上角图标的正下方放置一个图标作为边界。{Colors.ENDC}"
+    #     )
+    #     return None
+    # pos3 = left_column_icons[-1]
 
     pos1 = None
     pos2 = None
@@ -237,8 +237,9 @@ def calculate_grid_parameters(h_listview):
         return None
 
     screen_width = win32api.GetSystemMetrics(win32con.SM_CXSCREEN)
+    screen_height = win32api.GetSystemMetrics(win32con.SM_CYSCREEN)
     cols = (screen_width - origin_x) // grid_size_x
-    rows = (pos3[1] - origin_y) // grid_size_y + 1
+    rows = (screen_height - origin_y) // grid_size_y
 
     grid_info = {
         "size_x": grid_size_x,
